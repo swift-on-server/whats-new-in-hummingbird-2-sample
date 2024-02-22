@@ -2,7 +2,11 @@ import Hummingbird
 import Logging
 import NIOCore
 
-struct MyRequestContext: HBRequestContext {
+protocol MyRequestContext: HBRequestContext {
+    var myValue: String? { get set }
+}
+
+struct MyBaseRequestContext: MyRequestContext {
 
     var coreContext: HBCoreRequestContext
     var myValue: String?

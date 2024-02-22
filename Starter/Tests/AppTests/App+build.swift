@@ -5,7 +5,7 @@ import Hummingbird
 @MainActor
 func buildTestApplication() async throws -> some HBApplicationProtocol {
 
-    let router = HBRouter(context: MyRequestContext.self)
+    let router = HBRouter(context: MyBaseRequestContext.self)
 
     MyController().addRoutes(to: router.group("api"))
 

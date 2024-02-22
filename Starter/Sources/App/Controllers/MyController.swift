@@ -2,11 +2,11 @@ import Foundation
 import Hummingbird
 import NIO
 
-extension MyModel: HBResponseCodable {}
+struct MyController<Context: MyRequestContext> {
 
-struct MyController<Context: HBRequestContext> {
-
-    func addRoutes(to group: HBRouterGroup<Context>) {
+    func addRoutes(
+        to group: HBRouterGroup<Context>
+    ) {
         group
             .get(use: list)
             .post(use: create)
@@ -29,6 +29,7 @@ struct MyController<Context: HBRequestContext> {
         _ request: HBRequest,
         context: Context
     ) async throws -> HBEditedResponse<MyModel> {
+        // context.myValue
         let input = try await request.decode(
             as: MyModel.self,
             context: context

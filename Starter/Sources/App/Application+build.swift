@@ -5,7 +5,7 @@ import Logging
 @MainActor
 func buildApplication() async throws -> some HBApplicationProtocol {
     
-    let router = HBRouter(context: MyRequestContext.self)
+    let router = HBRouter(context: MyBaseRequestContext.self)
     
     router.middlewares.add(HBLogRequestsMiddleware(.info))
     router.middlewares.add(HBFileMiddleware())
