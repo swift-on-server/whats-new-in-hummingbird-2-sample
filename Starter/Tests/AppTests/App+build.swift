@@ -2,7 +2,6 @@ import Foundation
 import Hummingbird
 @testable import App
 
-@MainActor
 func buildTestApplication() async throws -> some HBApplicationProtocol {
 
     let router = HBRouter(context: MyBaseRequestContext.self)
