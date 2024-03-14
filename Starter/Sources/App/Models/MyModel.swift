@@ -4,4 +4,4 @@ struct MyModel: Codable {
     let title: String
 }
 
-extension MyModel: HBResponseCodable {}
+extension MyModel: ResponseCodable {}

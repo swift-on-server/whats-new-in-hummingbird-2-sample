@@ -2,13 +2,13 @@ import Hummingbird
 import Logging
 import NIOCore
 
-protocol MyRequestContext: HBRequestContext {
+protocol MyRequestContext: RequestContext {
     var myValue: String? { get set }
 }
 
 struct MyBaseRequestContext: MyRequestContext {
 
-    var coreContext: HBCoreRequestContext
+    var coreContext: CoreRequestContext
     var myValue: String?
 
     init(
@@ -22,7 +22,7 @@ struct MyBaseRequestContext: MyRequestContext {
         self.myValue = nil
     }
     
-    var requestDecoder: HBRequestDecoder {
+    var requestDecoder: RequestDecoder {
         MyRequestDecoder()
     }
 }

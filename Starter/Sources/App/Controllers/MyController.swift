@@ -5,7 +5,7 @@ import NIO
 struct MyController<Context: MyRequestContext> {
 
     func addRoutes(
-        to group: HBRouterGroup<Context>
+        to group: RouterGroup<Context>
     ) {
         group
             .get(use: list)
@@ -14,7 +14,7 @@ struct MyController<Context: MyRequestContext> {
 
     @Sendable 
     func list(
-        _ request: HBRequest,
+        _ request: Request,
         context: Context
     ) async throws -> [MyModel] {
         [
@@ -26,9 +26,9 @@ struct MyController<Context: MyRequestContext> {
 
     @Sendable 
     func create(
-        _ request: HBRequest,
+        _ request: Request,
         context: Context
-    ) async throws -> HBEditedResponse<MyModel> {
+    ) async throws -> EditedResponse<MyModel> {
         // context.myValue
         let input = try await request.decode(
             as: MyModel.self,
