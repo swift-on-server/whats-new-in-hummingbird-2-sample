@@ -2,13 +2,13 @@ import Foundation
 import Hummingbird
 import Logging
 
-func buildApplication() async throws -> some HBApplicationProtocol {
+func buildApplication() async throws -> some ApplicationProtocol {
     
-    let router = HBRouter(context: MyBaseRequestContext.self)
+    let router = Router(context: MyBaseRequestContext.self)
     
-    router.middlewares.add(HBLogRequestsMiddleware(.info))
-    router.middlewares.add(HBFileMiddleware())
-    router.middlewares.add(HBCORSMiddleware(
+    router.middlewares.add(LogRequestsMiddleware(.info))
+    router.middlewares.add(FileMiddleware())
+    router.middlewares.add(CORSMiddleware(
         allowOrigin: .originBased,
         allowHeaders: [.contentType],
         allowMethods: [.get, .post, .delete, .patch]
@@ -20,7 +20,7 @@ func buildApplication() async throws -> some HBApplicationProtocol {
 
     MyController().addRoutes(to: router.group("api"))
 
-    return HBApplication(
+    return Application(
         router: router,
         configuration: .init(
             address: .hostname("localhost", port: 8080)
